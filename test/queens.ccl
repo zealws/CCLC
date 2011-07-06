@@ -1,0 +1,368 @@
+!
+! The following is a ridiculously over-engineered program to find solutions
+! to the n-queens problem.
+!
+
+
+fun ()
+
+    vars
+
+        fun (int) int numberOfDiagonals,
+        fun (int, int, int) int leftDiagonalNumber,
+        fun (int, int, int) int rightDiagonalNumber,
+
+        fun (int, int, int, immut ref vec int, immut ref vec int, immut ref vec int) triv placeQueen,
+        fun (int, int, int, immut ref vec int, immut ref vec int, immut ref vec int) triv removeQueen,
+        fun (immut ref vec int, immut ref vec int, immut ref vec int) triv removeAllQueens,
+
+        fun (
+            int,
+            int,
+            int,
+            immut ref vec immut int,
+            immut ref vec immut int,
+            immut ref vec immut int
+            ) int queenCannotMakeACapture,
+
+        fun (
+            int,
+            int,
+            immut ref vec int,
+            immut ref vec int,
+            immut ref vec int,
+            ref int
+            ) triv placeRemainingQueensAndPrintResultsIfSuccessful
+
+    in
+
+        numberOfDiagonals :=
+
+            !
+            ! pre:  numberOfRowsAndColumns > 0
+            !
+            ! post: none
+            !
+
+            fun (int numberOfRowsAndColumns)
+
+                2 * numberOfRowsAndColumns - 1
+
+                endfun;
+
+        leftDiagonalNumber :=
+
+            !
+            ! pre:  numberOfRowsAndColumns > 0
+            !       row >= 0
+            !       column >= 0
+            !
+            ! post: none
+            !
+
+            fun (int row, int column, int numberOfRowsAndColumns)
+
+                row - column + numberOfRowsAndColumns - 1
+
+                endfun;
+
+        rightDiagonalNumber :=
+
+            !
+            ! pre:  row >= 0
+            !       column >= 0
+            !
+            ! post: none
+            !
+
+            fun (int row, int column, int numberOfRowsAndColumns)
+
+                row + column
+
+                endfun;
+
+        queenCannotMakeACapture :=
+
+            !
+            ! pre:  0 < numberOfRowsAndColumns <= # columnTaken
+            !       0 <= column < numberOfRowsAndColumns
+            !       0 <= row < numberOfRowsAndColumns
+            !       all elements of columnTaken[ 0 ... # columnTaken - 1 ] are either 0 or 1
+            !       all elements of leftDiagonalTaken[ 0 ... # leftDiagonalTaken - 1 ] are either 0 or 1
+            !       all elements of rightDiagonalTaken[ 0 ... # rightDiagonalTaken - 1 ] are either 0 or 1
+            !
+            ! post: columnTaken[ 0 ... # columnTaken - 1 ] is unchanged
+            !       leftDiagonalTaken[ 0 ... # leftDiagonalTaken - 1 ] is unchanged
+            !       rightDiagonalTaken[ 0 ... # rightDiagonalTaken - 1 ] is unchanged
+            !
+
+            fun (
+                    int row,
+                    int column,
+                    int numberOfRowsAndColumns,
+                    immut ref vec immut int columnTaken,
+                    immut ref vec immut int leftDiagonalTaken,
+                    immut ref vec immut int rightDiagonalTaken
+                    )
+
+                (columnTaken[ column ] = 0)
+                    * (leftDiagonalTaken[ leftDiagonalNumber(row, column, numberOfRowsAndColumns) ] = 0)
+                    * (rightDiagonalTaken[ rightDiagonalNumber(row, column, numberOfRowsAndColumns) ] = 0)
+
+                endfun;
+
+        placeQueen :=
+
+            !
+            ! pre:  0 < numberOfRowsAndColumns <= # columnTaken
+            !       0 <= column < numberOfRowsAndColumns
+            !       0 <= row < numberOfRowsAndColumns
+            !
+            ! post: columnTaken[ column ] = 1
+            !       leftDiagonalTaken[ leftDiagonalNumber(row, column, numberOfRowsAndColumns) ] = 1
+            !       rightDiagonalTaken[ rightDiagonalNumber(row, column, numberOfRowsAndColumns) ] = 1
+            !
+
+            fun (
+                    int row,
+                    int column,
+                    int numberOfRowsAndColumns,
+                    immut ref vec int columnTaken,
+                    immut ref vec int leftDiagonalTaken,
+                    immut ref vec int rightDiagonalTaken
+                    )
+
+                columnTaken[ column ] := 1;
+                leftDiagonalTaken[ leftDiagonalNumber(row, column, numberOfRowsAndColumns) ] := 1;
+                rightDiagonalTaken[ rightDiagonalNumber(row, column, numberOfRowsAndColumns) ] := 1;
+
+                ?
+
+                endfun;
+
+        removeQueen :=
+
+            !
+            ! pre:  0 < numberOfRowsAndColumns <= # columnTaken
+            !       0 <= column < numberOfRowsAndColumns
+            !       0 <= row < numberOfRowsAndColumns
+            !
+            ! post: columnTaken[ column ] = 0
+            !       leftDiagonalTaken[ leftDiagonalNumber(row, column, numberOfRowsAndColumns) ] = 0
+            !       rightDiagonalTaken[ rightDiagonalNumber(row, column, numberOfRowsAndColumns) ] = 0
+            !
+
+            fun (
+                    int row,
+                    int column,
+                    int numberOfRowsAndColumns,
+                    immut ref vec int columnTaken,
+                    immut ref vec int leftDiagonalTaken,
+                    immut ref vec int rightDiagonalTaken
+                    )
+
+                columnTaken[ column ] := 0;
+                leftDiagonalTaken[ leftDiagonalNumber(row, column, numberOfRowsAndColumns) ] := 0;
+                rightDiagonalTaken[ rightDiagonalNumber(row, column, numberOfRowsAndColumns) ] := 0;
+
+                ?
+
+                endfun;
+
+        removeAllQueens :=
+
+            !
+            ! pre:  none
+            !
+            ! post: columnTaken[ 0 ... # columnTaken - 1 ] = 0, elementwise
+            !       leftDiagonalTaken[ 0 ... # leftDiagonalTaken - 1 ] = 0, elementwise
+            !       rightDiagonalTaken[ 0 ... # rightDiagonalTaken - 1 ] = 0, elementwise
+            !
+
+            fun (
+                    immut ref vec int columnTaken,
+                    immut ref vec int leftDiagonalTaken,
+                    immut ref vec int rightDiagonalTaken
+                    )
+
+                vars
+
+                    int j
+
+                in
+
+                    j := 0;
+
+                    !
+                    ! inv:  columnTaken[ 0 ... j - 1 ] = 0, elementwise
+                    !
+
+                    while j < # columnTaken do
+                        columnTaken[ j ] := 0;
+                        j := j + 1
+                        endwhile;
+
+                    j := 0;
+
+                    !
+                    ! inv:  leftDiagonalTaken[ 0 ... j - 1 ] = 0, elementwise
+                    !       rightDiagonalTaken[ 0 ... j - 1 ] = 0, elementwise
+                    !
+
+                    while j < # leftDiagonalTaken do
+                        leftDiagonalTaken[ j ] := 0;
+                        rightDiagonalTaken[ j ] := 0;
+                        j := j + 1
+                        endwhile
+
+                    endvars;
+
+                    ?
+
+                endfun;
+
+        placeRemainingQueensAndPrintResultsIfSuccessful :=
+
+            !
+            ! pre:  numberOfQueensAlreadyPlaced >= 0
+            !       numberOfRowsAndColumns >= 0
+            !       columnTaken, leftDiagnonalTaken, rightDiagonalTaken exist and reflect the
+            !           placement of queens on rows 0 ... numberOfQueensAlreadyPlaced - 1
+            !       success @ exists
+            !       success @ = 0
+            !
+            ! post: 
+            !
+
+            fun (
+                    int numberOfQueensAlreadyPlaced,
+                    int numberOfRowsAndColumns,
+                    immut ref vec int columnTaken,
+                    immut ref vec int leftDiagonalTaken,
+                    immut ref vec int rightDiagonalTaken,
+                    ref int success
+                    )
+
+                vars
+
+                    int column
+
+                in
+
+                    if numberOfQueensAlreadyPlaced >= numberOfRowsAndColumns then
+
+                        success @ := 1
+
+                    else
+
+                        column := 0;
+
+                        !
+                        ! inv: a queen cannot be placed on any of columns 0 ... column - 1 on
+                        !          row numberOfQueensAlreadyPlaced
+                        !
+
+                        while (column < numberOfRowsAndColumns) * (success @ = 0) do
+
+                            if queenCannotMakeACapture(
+                                    numberOfQueensAlreadyPlaced,
+                                    column,
+                                    numberOfRowsAndColumns,
+                                    columnTaken, leftDiagonalTaken, rightDiagonalTaken
+                                    ) then
+
+                                placeQueen(
+                                    numberOfQueensAlreadyPlaced,
+                                    column,
+                                    numberOfRowsAndColumns,
+                                    columnTaken, leftDiagonalTaken, rightDiagonalTaken
+                                    );
+
+                                placeRemainingQueensAndPrintResultsIfSuccessful(
+                                    numberOfQueensAlreadyPlaced + 1,
+                                    numberOfRowsAndColumns,
+                                    columnTaken, leftDiagonalTaken, rightDiagonalTaken,
+                                    success
+                                    );
+
+                                if success @ then
+
+                                    output (numberOfQueensAlreadyPlaced + 1);
+                                    output (column + 1);
+                                    ?
+
+                                else
+
+                                    removeQueen(
+                                        numberOfQueensAlreadyPlaced,
+                                        column,
+                                        numberOfRowsAndColumns,
+                                        columnTaken, leftDiagonalTaken, rightDiagonalTaken
+                                        )
+
+                                    endif;
+
+                                ?
+
+                            else
+
+                                ?
+
+                                endif;
+
+                            column := column + 1
+
+                            endwhile
+
+                        endif
+
+                    endvars;
+
+                    ?
+
+                endfun;
+
+        vars
+
+            int numberOfRowsAndColumns
+
+        in
+
+            input numberOfRowsAndColumns;
+
+            if numberOfRowsAndColumns > 0 then
+
+                vars
+
+                    vec [ numberOfRowsAndColumns ] int columnTaken,
+                    vec [ numberOfDiagonals(numberOfRowsAndColumns) ] int leftDiagonalTaken,
+                    vec [ numberOfDiagonals(numberOfRowsAndColumns) ] int rightDiagonalTaken,
+
+                    int success
+
+                in
+
+                        success := 0;
+
+                        removeAllQueens(columnTaken, leftDiagonalTaken, rightDiagonalTaken);
+
+                        placeRemainingQueensAndPrintResultsIfSuccessful(
+                            0,
+                            numberOfRowsAndColumns,
+                            columnTaken, leftDiagonalTaken, rightDiagonalTaken,
+                            & success
+                            )
+
+                    endvars
+
+            else
+
+                ?
+
+                endif
+
+            endvars
+
+        endvars
+
+    endfun

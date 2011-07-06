@@ -1,0 +1,6 @@
+fun ()
+    !
+    ! test for dangling reference as operand of input
+    !
+    input vars int j in &j endvars@
+    endfun

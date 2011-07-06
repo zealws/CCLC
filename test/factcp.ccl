@@ -1,0 +1,20 @@
+fun ()
+  vars
+    fun (fun (int) int, int) int fact,
+    int j
+  in
+    fact :=
+      fun (fun (int) int k, int n)
+        if n = 0 then
+          k(1)
+        else
+          fact(fun (int result) k(n * result) endfun, n - 1)
+          endif
+        endfun;
+    j := 0;
+    while j <= 10 do
+      output fact(fun (int i) i endfun, j);
+      j := j + 1
+      endwhile
+    endvars
+  endfun

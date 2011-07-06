@@ -1,0 +1,15 @@
+fun ()
+  vars
+    vec [11] vec [12] int vecVecInt,
+    vec [11] ref vec int vecRefvecInt
+  in
+    (if 1 then vecVecInt else vecVecInt endif)[1] := vecVecInt[1];
+    (if 1 then vecRefvecInt else vecRefvecInt endif)[1] := vecVecInt[1];
+    (if 1 then vecRefvecInt else vecVecInt endif)[1] := vecVecInt[1];
+    (if 1 then vecVecInt else vecRefvecInt endif)[1] := vecVecInt[1];
+    vecRefvecInt[1] := (if 1 then vecVecInt else vecVecInt endif)[1];
+    vecRefvecInt[1] := (if 1 then vecRefvecInt else vecRefvecInt endif)[1];
+    vecRefvecInt[1] := (if 1 then vecRefvecInt else vecVecInt endif)[1];
+    vecRefvecInt[1] := (if 1 then vecVecInt else vecRefvecInt endif)[1]
+    endvars
+  endfun

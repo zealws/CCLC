@@ -1,0 +1,12 @@
+fun ()
+    vars
+	int j,
+	con triv c,
+	vec [0] int r
+    in
+        !
+        ! test for expired continuations
+        !
+        control c in ? endcontrol; c continues ?
+	endvars
+    endfun

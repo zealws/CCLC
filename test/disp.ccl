@@ -1,0 +1,77 @@
+fun ()
+  vars
+    int n,
+    int j,
+    int k,
+    int a,
+    fun (int, int, fun () int, fun () int) int f1
+  in
+    f1 := 
+      fun (int j, int k, fun () int g, fun () int h)
+        vars
+          int a,
+          fun (int, int, fun () int, fun () int) int f2
+        in
+          f2 :=
+            fun (int j, int k, fun () int g, fun () int h)
+              vars
+                int a,
+                fun (int, int, fun () int, fun () int) int f3
+              in
+                f3 :=
+                  fun (int j, int k, fun () int g, fun () int h)
+                    vars
+                      int a
+                    in
+                      n := n + 1;
+                      a := n;
+                      if j = 0 then
+                        g();
+                        h()
+                      else
+                        if k = 0 then
+                          f1(j - 1, k - 1, fun () output a endfun, fun () output a endfun)
+                        else
+                          f1(j - 1, k - 1, fun () output a endfun, h)
+                          endif
+                        endif
+                      endvars
+                    endfun;
+                n := n + 1;
+                a := n;
+                if j = 0 then
+                  g();
+                  h()
+                else
+                  if k = 0 then
+                    f3(j - 1, k - 1, fun () output a endfun, fun () output a endfun)
+                  else
+                    f3(j - 1, k - 1, fun () output a endfun, h)
+                    endif
+                  endif
+                endvars
+              endfun;
+          n := n + 1;
+          a := n;
+          if j = 0 then
+            g();
+            h()
+          else
+            if k = 0 then
+              f2(j - 1, k - 1, fun () output a endfun, fun () output a endfun)
+            else
+              f2(j - 1, k - 1, fun () output a endfun, h)
+              endif
+            endif
+          endvars
+        endfun;
+    j := 0;
+    k := 5;
+    while j < 10 do
+      n := 0;
+      a := n;
+      f1(j, k, fun () output a endfun, fun () output a endfun);
+      j := j + 1
+      endwhile
+    endvars
+  endfun

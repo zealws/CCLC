@@ -1,0 +1,98 @@
+fun ()
+    fun (int a1)
+        fun (int a2)
+            fun (int a3)
+                fun (int a4)
+                    fun (int a5)
+                        fun (int a6)
+                            fun (int a7)
+                                fun (int a8)
+                                    fun (int a9)
+                                        fun (int a10)
+                                            fun (int a11)
+                                                fun (int a12)
+                                                    fun (int a13)
+                                                        fun (int a14)
+                                                            fun (int a15)
+                                                                fun (int a16)
+                                                                    fun (int a17)
+                                                                        fun (int a18)
+                                                                            fun (int a19)
+                                                                                fun (int a20)
+                                                                                    fun (int a21)
+                                                                                        fun (int a22)
+                                                                                            fun (int a23)
+                                                                                                fun (int a24)
+                                                                                                    fun (int a25)
+                                                                                                        fun (int a26)
+                                                                                                            fun (int a27)
+                                                                                                                fun (int a28)
+                                                                                                                    fun (int a29)
+                                                                                                                        fun (int a30)
+                                                                                                                            fun (int a31)
+                                                                                                                                fun (int a32)
+                                                                                                                                    output a1;
+                                                                                                                                    output a2;
+                                                                                                                                    output a3;
+                                                                                                                                    output a4;
+                                                                                                                                    output a5;
+                                                                                                                                    output a6;
+                                                                                                                                    output a7;
+                                                                                                                                    output a8;
+                                                                                                                                    output a9;
+                                                                                                                                    output a10;
+                                                                                                                                    output a11;
+                                                                                                                                    output a12;
+                                                                                                                                    output a13;
+                                                                                                                                    output a14;
+                                                                                                                                    output a15;
+                                                                                                                                    output a16;
+                                                                                                                                    output a17;
+                                                                                                                                    output a18;
+                                                                                                                                    output a19;
+                                                                                                                                    output a20;
+                                                                                                                                    output a21;
+                                                                                                                                    output a22;
+                                                                                                                                    output a23;
+                                                                                                                                    output a24;
+                                                                                                                                    output a25;
+                                                                                                                                    output a26;
+                                                                                                                                    output a27;
+                                                                                                                                    output a28;
+                                                                                                                                    output a29;
+                                                                                                                                    output a30;
+                                                                                                                                    output a31;
+                                                                                                                                    output a32
+                                                                                                                                    endfun(1 + a31)
+                                                                                                                                endfun(1 + a30)
+                                                                                                                            endfun(1 + a29)
+                                                                                                                        endfun(1 + a28)
+                                                                                                                    endfun(1 + a27)
+                                                                                                                endfun(1 + a26)
+                                                                                                            endfun(1 + a25)
+                                                                                                        endfun(1 + a24)
+                                                                                                    endfun(1 + a23)
+                                                                                                endfun(1 + a22)
+                                                                                            endfun(1 + a21)
+                                                                                        endfun(1 + a20)
+                                                                                    endfun(1 + a19)
+                                                                                endfun(1 + a18)
+                                                                            endfun(1 + a17)
+                                                                        endfun(1 + a16)
+                                                                    endfun(1 + a15)
+                                                                endfun(1 + a14)
+                                                            endfun(1 + a13)
+                                                        endfun(1 + a12)
+                                                    endfun(1 + a11)
+                                                endfun(1 + a10)
+                                            endfun(1 + a9)
+                                        endfun(1 + a8)
+                                    endfun(1 + a7)
+                                endfun(1 + a6)
+                            endfun(1 + a5)
+                        endfun(1 + a4)
+                    endfun(1 + a3)
+                endfun(1 + a2)
+            endfun(1 + a1)
+        endfun(1)
+    endfun

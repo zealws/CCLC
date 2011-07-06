@@ -1,0 +1,3 @@
+fun ()
+  output fun (int i, int j, int k) i + j + k endfun (3, 4, 5)
+  endfun

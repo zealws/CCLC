@@ -1,0 +1,26 @@
+fun ()
+  vars
+    vec [7] fun (int) int fnvec,
+    vec [7] ref fun (int) int fnrefvec,
+    int j
+  in
+    fnvec[0] := fun (int n) output n endfun;
+    fnvec[1] := fun (int n) output (n + 10) endfun;
+    fnvec[2] := fun (int n) output (n - 10) endfun;
+    fnvec[3] := fun (int n) output (n * 10) endfun;
+    fnvec[4] := fun (int n) output (n / 10) endfun;
+    fnvec[5] := fun (int n) output - n endfun;
+    fnvec[6] := fun (int n) output + n endfun;
+    j := 0;
+    while j < 7 do
+      fnrefvec[j] := &fnvec[j];
+      j := j + 1
+      endwhile;
+    j := 0;
+    while j < 7 do
+      fnvec[j](20);
+      fnrefvec[j]@(20);
+      j := j + 1
+      endwhile
+    endvars
+  endfun

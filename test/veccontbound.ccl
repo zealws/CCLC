@@ -1,0 +1,23 @@
+fun ()
+    output 1;
+    vars
+        int j,
+        con int ci
+    in
+        output 2;
+        j := 5;
+        output 
+            control
+                ci
+            in
+                vars
+                    vec [ output 3 ] vec [ ci continues 4 ] vec [ output 9997 ] int V
+                in
+                    output 9998
+                    endvars;
+                output 9999
+                endcontrol;
+        output j
+        endvars;
+        output 6
+    endfun

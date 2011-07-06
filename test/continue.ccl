@@ -1,0 +1,17 @@
+fun ()
+  vars
+    con int ci,
+    vec [10] int vi
+  in
+    output control ci in 1 endcontrol;
+    output control ci in ci continues 2; 0 endcontrol;
+    output control ci in if ci continues 3 then 0 else 0 endif endcontrol;
+    output control ci in while 1 do ci continues 4 endwhile endcontrol;
+    output control ci in while ci continues 5 do 0 endwhile endcontrol;
+    output control ci in vars vec [ci continues 6] int vi in 0 endvars endcontrol;
+    output control ci in input vi[ci continues 7; 0] endcontrol;
+    output control ci in ci continues (ci continues 8; 0) endcontrol;
+    output control ci in (ci continues 9; ci) continues 0 endcontrol;
+    output control ci in vi[0] + (ci continues 10) endcontrol
+    endvars
+  endfun

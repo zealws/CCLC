@@ -1,0 +1,66 @@
+fun ()
+
+    vars
+
+        fun (int, int, con int) int fact,
+        int j,
+        con int answerCon
+
+    in
+
+        !
+        ! Let fact = the contrived factorial function, using an accumulator
+        ! parameter and a continuation.
+        !
+
+            fact :=
+
+                fun (int n, int answerValue, con int answerCon)
+                    if n = 0 then
+
+                        !
+                        ! Produce the value of the accumulator parameter as the
+                        ! value of the control block that created the continuation.
+                        !
+
+                            answerCon continues answerValue
+
+                    else
+
+                        !
+                        ! Call fact, accumulating the factor of n and passing along
+                        ! the continuation through which to produce the final answer.
+                        !
+
+                            fact(n - 1, answerValue * n, answerCon)
+
+                        endif
+
+                    endfun;
+
+        !
+        ! For j = 0, ... , 10, calculate and display j!.
+        !
+
+            j := 0;
+            while j <= 10 do
+
+                !
+                ! Calculate and display j! by calling fact with j, an initial
+                ! accumulator value of 1, and a continuation through which to produce
+                ! the final result.
+                !
+
+                    output
+                        control
+                            answerCon
+                        in
+                            fact(j, 1, answerCon)
+                            endcontrol;
+
+                j := j + 1
+                endwhile
+
+        endvars
+
+    endfun

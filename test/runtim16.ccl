@@ -1,0 +1,6 @@
+fun ()
+    !
+    ! test for dangling reference to vector element
+    !
+    vars vec [3] vec [4] vec [5] int a in &a[1][2][3] endvars@ := 17
+    endfun

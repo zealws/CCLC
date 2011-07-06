@@ -1,0 +1,7 @@
+fun ()
+    vars
+        vec [ output 1; 0 ] vec [ output 2; 0 ] vec [ output 3; 0 ] int V
+    in
+        V
+        endvars
+    endfun

@@ -1,0 +1,29 @@
+fun ()
+    fun (int j)
+        output j;
+        fun (int k)
+            output j;
+            output k;
+            fun (int l)
+                output j;
+                output k;
+                output l;
+                j := 4444;
+                k := 5555;
+                l := 6666;
+                output j;
+                output k;
+                output l
+                endfun (3333);
+            output j;
+            output k;
+            j := 6666;
+            k := 7777;
+            output j;
+            output k
+            endfun (2222);
+        output j;
+        j := 8888;
+        output j
+        endfun (1111)
+    endfun

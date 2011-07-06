@@ -1,0 +1,164 @@
+fun ()
+
+    vars
+
+        int size
+        
+    in
+    
+        input size;
+        
+        vars
+
+            fun (int, ref vec int, ref vec int, ref int) triv placeQueen,
+            fun (int, int, ref vec int) int noQueenOnRow,
+            fun (int, int, ref vec int) int noQueenOnCol,
+            fun (int, int, int, ref vec int, ref vec int) int noQueenOnDiags,
+            fun (ref vec int, ref vec int) triv outputSolution,
+
+            vec [ size ] int placedRows,
+            vec [ size ] int placedCols,
+            int success
+            
+        in
+        
+            placeQueen :=
+            
+                fun (int numberPlaced, ref vec int placedRows, ref vec int placedCols, ref int success)
+                
+                    vars
+                    
+                        int row,
+                        int col
+                        
+                    in
+                    
+                        if numberPlaced >= # placedRows then
+                        
+                            success @ := 1
+                            
+                        else
+                    
+                            row := 1;
+                            while (row <= # placedRows) * (success @ = 0) do
+                            
+                                col := 1;
+                                while (col <= # placedCols) * (success @ = 0) do
+
+                                    if noQueenOnRow(row, numberPlaced, placedRows)
+                                            * noQueenOnCol(col, numberPlaced, placedCols)
+                                            * noQueenOnDiags(row, col, numberPlaced, placedRows, placedCols)
+                                            then
+                                            
+                                        placedRows[ numberPlaced ] := row;
+                                        placedCols[ numberPlaced ] := col;
+                                        placeQueen(numberPlaced + 1, placedRows, placedCols, success)
+                                        
+                                    else
+                                        ?
+                                        endif;
+
+                                    col := col + 1
+                                    endwhile;
+                                    
+                                row := row + 1
+                                endwhile
+                                
+                            endif
+                    
+                        endvars;
+
+                        ?
+                    
+                    endfun;
+                    
+                noQueenOnRow :=
+                
+                    fun (int candidateRow, int numberPlaced, ref vec int placedRows)
+                        vars
+                            int row
+                        in
+                            row := 0;
+                            while (row < numberPlaced) * (placedRows[ row ] <> candidateRow) do
+                                row := row + 1
+                                endwhile;
+                            row >= numberPlaced
+                            endvars
+                        endfun;
+        
+                noQueenOnCol :=
+                
+                    fun (int candidateCol, int numberPlaced, ref vec int placedCols)
+                        vars
+                            int col
+                        in
+                            col := 0;
+                            while (col < numberPlaced) * (placedCols[ col ] <> candidateCol) do
+                                col := col + 1
+                                endwhile;
+                            col >= numberPlaced
+                            endvars
+                        endfun;
+        
+                noQueenOnDiags :=
+                
+                    fun (int candidateRow, int candidateCol, int numberPlaced, ref vec int placedRows, ref vec int placedCols)
+                    
+                        vars
+                        
+                            int left,
+                            int right
+                            
+                        in
+                        
+                            left := 0;
+                            while (left < numberPlaced)
+                                    * (placedRows[ left ] - placedCols[ left ] <> candidateRow - candidateCol)
+                                    do
+                                left := left + 1
+                                endwhile;
+                                
+                            right := 0;
+                            while (right < numberPlaced)
+                                    * (placedRows[ right ] + placedCols[ right ] <> candidateRow + candidateCol)
+                                    do
+                                right := right + 1
+                                endwhile;
+                                
+                            (left >= numberPlaced) * (right >= numberPlaced)
+                        
+                            endvars
+                            
+                        endfun;
+
+                outputSolution :=
+
+                    fun (ref vec int placedRows, ref vec int placedCols)
+                        vars
+                            int j
+                        in
+                            j := 0;
+                            while j < # placedRows do
+                                output placedRows[ j ];
+                                output placedCols[ j ];
+                                j := j + 1
+                                endwhile
+                            endvars;
+                            ?
+                        endfun;
+        
+                success := 0;
+                
+                placeQueen(0, placedRows, placedCols, & success);
+                
+                if success then
+                    outputSolution(placedRows, placedCols)
+                else
+                    ?
+                    endif
+        
+            endvars
+            
+        endvars
+
+    endfun

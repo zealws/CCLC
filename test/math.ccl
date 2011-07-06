@@ -1,0 +1,17 @@
+fun ()
+  vars
+    int a,
+    int b,
+    int c,
+    int d
+  in
+    input a;
+    input b;
+    output (a + b);
+    output (a - b);
+    output (a * b);
+    output (a / b);
+    output (-a);
+    output (+b)
+    endvars
+  endfun

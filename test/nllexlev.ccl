@@ -1,0 +1,57 @@
+fun ()
+  fun (int a, int b, int c, fun () triv f1)
+    f1 :=
+      fun ()
+        fun (int b, int c, fun () triv f2)
+          f2 :=
+            fun ()
+              fun (int c, fun () triv f3)
+                f3 :=
+                  fun ()
+                    a := 10;
+                    b := 11;
+                    c := 12;
+                    output a;
+                    output b;
+                    output c;
+                    ?
+                    endfun;
+                a := 7;
+                b := 8;
+                c := 9;
+                output a;
+                output b;
+                output c;
+                f3();
+                output a;
+                output b;
+                output c;
+                ?
+                endfun (17, fun () ? endfun)
+              endfun;
+          a := 4;
+          b := 5;
+          c := 6;
+          output a;
+          output b;
+          output c;
+          f2();
+          output a;
+          output b;
+          output c;
+          ?
+          endfun (17, 18, fun () ? endfun)
+        endfun;
+    a := 1;
+    b := 2;
+    c := 3;
+    output a;
+    output b;
+    output c;
+    f1();
+    output a;
+    output b;
+    output c;
+    ?
+    endfun (17, 18, 19, fun () ? endfun)
+  endfun

@@ -1,0 +1,128 @@
+fun ()
+
+    vars
+
+        int n,
+        vec [ input n ] int v,
+        int reduction,
+        fun (ref vec int) triv readIntVector,
+        fun (ref vec immut int) triv writeIntVector,
+        fun (ref vec int, ref int, fun (int, int) int, int) triv reduceIntVector
+
+    in
+
+        !
+        ! Let readIntVector = a function that reads values into v[ 0 ], ... ,
+        ! v[ # v - 1 ], successively.
+        !
+
+            readIntVector :=
+
+                fun (ref vec int v)
+
+                    vars
+
+                        int j
+
+                    in
+
+                        j := 0;
+                        while j < # v do
+                            input v[ j ];
+                            j := j + 1
+                            endwhile
+
+                        endvars;
+
+                    ?
+
+                    endfun;
+
+        !
+        ! Let writeIntVector = a function that displays v[ 0 ], ... , v[ # v - 1 ],
+        ! successively.
+        !
+
+            writeIntVector :=
+
+                fun (ref vec immut int v)
+
+                    vars
+
+                        int j
+
+                    in
+
+                        j := 0;
+                        while j < # v do
+                            output v[ j ];
+                            j := j + 1
+                            endwhile
+
+                        endvars;
+
+                    ?
+
+                    endfun;
+
+        !
+        ! Let reduceIntVector = a function that assigns to the variable pointed at
+        ! by result the value
+        !
+        !    f(v[ 0 ],
+        !        f(v[ 1 ],
+        !            ...
+        !                f(v[ # v - 1 ],
+        !                    vacuous) ... ))
+        !
+
+            reduceIntVector :=
+
+                fun (
+                        ref vec immut int v,
+                        ref int result,
+                        fun (int, int) int f,
+                        int vacuous
+                        )
+
+                    vars
+
+                        int j
+
+                    in
+
+                        j := # v - 1;
+                        result @ := vacuous;
+                        while j >= 0 do
+                            result @ := f(v[ j ], result @);
+                            j := j - 1
+                            endwhile
+
+                        endvars;
+
+                    ?
+
+                    endfun;
+
+        readIntVector(v);
+        writeIntVector(v);
+
+        !
+        ! Let reduction = the product of v[ 0 ] ... v[ # v - 1 ]
+        !
+
+            reduceIntVector(v, & reduction, fun (int j, int k) j * k endfun, 1);
+
+        output reduction;
+
+        !
+        ! Let reduction = the sum of v[ 0 ] ... v[ # v - 1 ]
+        !
+
+            reduceIntVector(v, & reduction, fun (int j, int k) j + k endfun, 0);
+
+        output reduction
+
+        endvars
+
+    endfun

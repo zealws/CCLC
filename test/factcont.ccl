@@ -1,0 +1,22 @@
+fun ()
+  vars
+    fun (int, int, con int) int fact,
+    int j,
+    con int answerCon
+  in
+    fact :=
+      fun (int n, int answerValue, con int answerCon)
+        if n = 0 then
+          answerCon continues answerValue
+        else
+          fact(n - 1, answerValue * n, answerCon)
+          endif
+        endfun;
+    j := 0;
+    while j <= 10 do
+      output
+        control answerCon in -17; fact(j, 1, answerCon); -17 endcontrol;
+      j := j + 1
+      endwhile
+    endvars
+  endfun

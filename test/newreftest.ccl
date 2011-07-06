@@ -1,0 +1,124 @@
+fun ()
+
+    vars
+    
+        fun (ref int, ref int, ref ref int) int F
+        
+    in
+    
+        F :=
+            fun (ref int ri1, ref int ri2, ref ref int rri)
+            
+                output -9;
+                output ri1 @;
+                output ri2 @;
+                output rri @ @;
+
+                ri1 @ := ri2 @ + 1;
+
+                output -10;
+                output ri1 @;
+                output ri2 @;
+                output rri @ @;
+
+                ri1 @ := rri @ @ + 1;
+
+                output -11;
+                output ri1 @;
+                output ri2 @;
+                output rri @ @;
+
+                rri @ @ := ri1 @ + 1;
+
+                output -12;
+                output ri1 @;
+                output ri2 @;
+                output rri @ @
+
+                endfun;
+            
+        vars
+
+            int i,
+            ref int ri1,
+            ref int ri2,
+            ref ref int rri
+
+        in
+
+            ri1 := & i;
+            ri2 := ri1;
+            rri := & ri1;
+            i := 1111;
+
+            output -1;
+            output i;
+            output ri1 @;
+            output ri2 @;
+            output rri @ @;
+
+            ri1 @ := ri2 @ + 1;
+
+            output -2;
+            output i;
+            output ri1 @;
+            output ri2 @;
+            output rri @ @;
+
+            ri1 @ := rri @ @ + 1;
+
+            output -3;
+            output i;
+            output ri1 @;
+            output ri2 @;
+            output rri @ @;
+
+            rri @ @ := i + 1;
+
+            output -4;
+            output i;
+            output ri1 @;
+            output ri2 @;
+            output rri @ @;
+
+            fun (ref int ri1, ref int ri2, ref ref int rri)
+
+                output -5;            
+                output i;
+                output ri1 @;
+                output ri2 @;
+                output rri @ @;
+
+                ri1 @ := ri2 @ + 1;
+
+                output -6;
+                output i;
+                output ri1 @;
+                output ri2 @;
+                output rri @ @;
+
+                ri1 @ := rri @ @ + 1;
+
+                output -7;
+                output i;
+                output ri1 @;
+                output ri2 @;
+                output rri @ @;
+
+                rri @ @ := i + 1;
+
+                output -8;
+                output i;
+                output ri1 @;
+                output ri2 @;
+                output rri @ @
+
+                endfun(ri1, ri2, rri);
+                
+            F(ri1, ri2, rri)
+                
+            endvars
+            
+        endvars
+        
+    endfun

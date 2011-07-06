@@ -1,0 +1,6 @@
+fun ()
+    !
+    ! test for dangling reference as lhs of :=
+    !
+    vars int j in &j endvars@ := 17
+    endfun

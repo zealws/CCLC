@@ -1,0 +1,7 @@
+fun ()
+    fun (int j)
+        fun (int k) output k endfun (j);
+        fun () j := 24680 endfun ();
+        fun (int k) output k endfun (j)
+        endfun (13579)
+    endfun

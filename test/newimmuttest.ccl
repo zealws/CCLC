@@ -1,0 +1,17 @@
+fun ()
+    vars
+        fun (ref immut int) triv f1,
+        fun (ref int) triv f2,
+        fun () ref immut int f3,
+        fun () ref int f4,
+        fun (ref immut int) ref int f5,
+        fun (ref int) ref immut int f6,
+        fun (ref immut int) ref immut int f7,
+        fun (ref int) ref int f8
+    in
+        if 1 then f1 else f2 endif;
+        if 1 then f3 else f4 endif;
+        if 1 then f5 else f6 endif;
+        if 1 then f7 else f8 endif
+        endvars
+    endfun

@@ -1,0 +1,63 @@
+fun ()
+  fun (int n, int j, int k, int a, fun (int, int, fun () int, fun () int) int f1)
+    f1 := 
+      fun (int j, int k, fun () int g, fun () int h)
+        fun (int a, fun (int, int, fun () int, fun () int) int f2)
+          f2 :=
+            fun (int j, int k, fun () int g, fun () int h)
+              fun (int a, fun (int, int, fun () int, fun () int) int f3)
+                f3 :=
+                  fun (int j, int k, fun () int g, fun () int h)
+                    fun (int a)
+                      n := n + 1;
+                      a := n;
+                      if j = 0 then
+                        g();
+                        h()
+                      else
+                        if k = 0 then
+                          f1(j - 1, k - 1, fun () output a endfun, fun () output a endfun)
+                        else
+                          f1(j - 1, k - 1, fun () output a endfun, h)
+                          endif
+                        endif
+                      endfun (17)
+                    endfun;
+                n := n + 1;
+                a := n;
+                if j = 0 then
+                  g();
+                  h()
+                else
+                  if k = 0 then
+                    f3(j - 1, k - 1, fun () output a endfun, fun () output a endfun)
+                  else
+                    f3(j - 1, k - 1, fun () output a endfun, h)
+                    endif
+                  endif
+                endfun (17, fun (int a, int b, fun () int c, fun () int d) 18 endfun)
+              endfun;
+          n := n + 1;
+          a := n;
+          if j = 0 then
+            g();
+            h()
+          else
+            if k = 0 then
+              f2(j - 1, k - 1, fun () output a endfun, fun () output a endfun)
+            else
+              f2(j - 1, k - 1, fun () output a endfun, h)
+              endif
+            endif
+          endfun (17, fun (int a, int b, fun () int c, fun () int d) 18 endfun)
+        endfun;
+    j := 0;
+    k := 5;
+    while j < 10 do
+      n := 0;
+      a := n;
+      f1(j, k, fun () output a endfun, fun () output a endfun);
+      j := j + 1
+      endwhile
+    endfun (17, 18, 19, 20, fun (int a, int b, fun () int c, fun () int d) 21 endfun)
+  endfun

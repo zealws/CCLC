@@ -1,0 +1,29 @@
+fun ()
+  vars
+    vec [1] int filler1,
+    vec [2] int vi,
+    vec [3] int filler2
+  in
+
+    filler1[0] := filler1[0] := 1;
+    vi[1] := vi[0] := 2;
+    filler2[2] := filler2[0] := 3;
+
+    output # filler1; output filler1[0]; output filler1[0];
+    output # vi; output vi[0]; output vi[1];
+    output # filler2; output filler2[0]; output filler2[2];
+
+    vi[1] := vi[0] := 17;
+
+    output # filler1; output filler1[0]; output filler1[0];
+    output # vi; output vi[0]; output vi[1];
+    output # filler2; output filler2[0]; output filler2[2];
+
+    vi[2] := vi[-1] := 17;
+
+    output # filler1; output filler1[0]; output filler1[0];
+    output # vi; output vi[0]; output vi[1];
+    output # filler2; output filler2[0]; output filler2[2]
+
+    endvars
+  endfun

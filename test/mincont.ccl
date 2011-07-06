@@ -1,0 +1,7 @@
+fun ()
+  vars
+    con triv C
+  in
+    control C in ? endcontrol
+    endvars
+  endfun

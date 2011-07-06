@@ -1,0 +1,12 @@
+fun ()
+    vars
+	int j,
+	con triv c,
+	vec [0] int r
+    in
+        !
+        ! test for too-large vector index
+        !
+	r[0]
+	endvars
+    endfun

@@ -1,0 +1,13 @@
+fun ()
+  fun (
+    int thisIsJustAVeryVeryVeryLongIdentifierNameThatShouldTestIfTheCompilerCanDealWithSuchThings,
+    triv thisIsJustAnotherVeryVeryVeryLongIdentifierNameThatShouldTestIfTheCompilerCanDealWithSuchThings
+    )
+    thisIsJustAVeryVeryVeryLongIdentifierNameThatShouldTestIfTheCompilerCanDealWithSuchThings
+        := thisIsJustAVeryVeryVeryLongIdentifierNameThatShouldTestIfTheCompilerCanDealWithSuchThings;
+    thisIsJustAnotherVeryVeryVeryLongIdentifierNameThatShouldTestIfTheCompilerCanDealWithSuchThings
+        := thisIsJustAnotherVeryVeryVeryLongIdentifierNameThatShouldTestIfTheCompilerCanDealWithSuchThings;
+    thisIsJustAVeryVeryVeryLongIdentifierNameThatShouldTestIfTheCompilerCanDealWithSuchThings
+        := thisIsJustAnotherVeryVeryVeryLongIdentifierNameThatShouldTestIfTheCompilerCanDealWithSuchThings
+    endfun (0, ?)
+  endfun

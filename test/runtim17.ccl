@@ -1,0 +1,6 @@
+fun ()
+    !
+    ! test for overflow detection
+    !
+    output (30000 + 10000)
+    endfun

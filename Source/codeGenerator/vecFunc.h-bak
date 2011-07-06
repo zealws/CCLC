@@ -1,0 +1,227 @@
+string vecFuncs = "\n\
+.align 4\n\
+.global sizeOfVecs\n\
+# This function takes as parameters:\n\
+#   the sizes of each vector in a multi-dimensional vector,\n\
+#   the size of one element of the vector,\n\
+#   the dimension of the vector.\n\
+#\n\
+# This function assumes that:\n\
+#   the sizes are pushed onto the stack in order of level\n\
+#   (the outermost size is pushed first and the innermost size is pushed last),\n\
+#   a 4-bytes space is left on the stack before any of the parameters are pushed.\n\
+#\n\
+# This function DOES NOT pop any values off the stack when it returns.\n\
+# It leaves the stack exactly how it was when it was called.\n\
+# Care should be taken to pop the values off the stack for sanitation.\n\
+#\n\
+sizeOfVecs:\n\
+    enter $0, $0\n\
+    pushal\n\
+    # depth of the vector is the first parameter at 4(%ebp) \n\
+    movl $0, %ecx\n\
+    movl $0, %ebx\n\
+    movl 12(%ebp), %eax\n\
+  vecSizeBeginLoop:\n\
+    cmpl 8(%ebp), %ecx\n\
+    je vecSizeEndLoop\n\
+    # at this point in the execution:\n\
+    #   ecx holds the index of the current vector\n\
+    #   eax holds the size of the subvec for the vec we're looking at\n\
+    #   8(%ebp) holds the dimension of the vector\n\
+    #   12(%ebp) holds the size of one element of the vector\n\
+    movl %ecx, %edx\n\
+    sall %edx\n\
+    sall %edx\n\
+    addl $16, %edx\n\
+    addl %ebp, %edx\n\
+    # edx points to the size of our current vec\n\
+    mull (%edx)\n\
+    # Now eax holds the scaled value\n\
+    addl $8, %eax\n\
+    #    pushl %ecx\n\
+    #    pushl (%edx)\n\
+    #    pushl $outputInt\n\
+    #    calll printf\n\
+    #    addl $8, %esp\n\
+    #    popl %ecx\n\
+    inc %ecx\n\
+    jmp vecSizeBeginLoop\n\
+  vecSizeEndLoop:\n\
+    # eax now holds the total size of the vector\n\
+    # ecx now is the dimension + 1\n\
+    # we can use it now for referencing the return value space\n\
+    sall %ecx\n\
+    sall %ecx\n\
+    addl $16, %ecx\n\
+    addl %ebp, %ecx\n\
+    movl %eax, (%ecx)\n\
+    popal\n\
+    leave\n\
+    ret\n\
+\n\
+.align 4\n\
+.global setupVector\n\
+#\n\
+# Sets up a vector from previously allocated space.\n\
+#\n\
+# Has these parameters:\n\
+#   <top of stack>\n\
+#   vp - pointer to refvec we're initializing\n\
+#   ap - pointer to an arena of space for use\n\
+#   t  - the size of an element of the vector\n\
+#   n  - dimension of the vector\n\
+#   a0 - size of the vector we're setting up\n\
+#   a1\n\
+#   a2\n\
+#   ...\n\
+#   an-1 - sizes of the subvectors\n\
+#   <bottom of stack>\n\
+#\n\
+setupVector:\n\
+    enter $4, $0\n\
+    pushal\n\
+    # space for recursive total size is at\n\
+    #   -4(%ebp)\n\
+    # vp is at 8(%ebp)\n\
+    # ap is at 12(%ebp)\n\
+    # t is at 16(%ebp)\n\
+    # n  is at 20(%ebp)\n\
+    # a0 is at 24(%ebp)\n\
+    # a1 is at 28(%ebp)\n\
+    # ...\n\
+    # an-1 is at (20+4(n-1))(%ebp)\n\
+    # setup the refvec to point to the appropriate place\n\
+    movl 8(%ebp), %eax\n\
+    movl 12(%ebp), %ebx\n\
+    movl %ebx, (%eax)\n\
+    # setup the size part of the refvec\n\
+    movl 24(%ebp), %ebx\n\
+    movl %ebx, 4(%eax)\n\
+    # compare n to 0, if they are equal, jump to the end\n\
+    movl 20(%ebp), %eax\n\
+    cmpl $0, %eax\n\
+    je endOfSetupVector\n\
+    # setup n as n-1 for convenience\n\
+    movl 20(%ebp), %eax\n\
+    decl %eax\n\
+    movl %eax, 20(%ebp)\n\
+    # this is where we start setting up the first call to sizeOfVecs\n\
+    subl $4, %esp\n\
+    # next call the recursive total size\n\
+    # we need a loop to push the parameters of variable size\n\
+    movl 20(%ebp), %ecx\n\
+  beginPushParameter1Loop:\n\
+    cmpl $0, %ecx\n\
+    je endPushParameter1Loop\n\
+    movl %ecx, %eax\n\
+    sall %eax\n\
+    sall %eax\n\
+    # eax = 4i\n\
+    addl $24, %eax\n\
+    # eax = 24+4i\n\
+    addl %ebp, %eax\n\
+    # eax = 24+4i(%ebp)\n\
+    # push the parameter value\n\
+    pushl (%eax)\n\
+    decl %ecx\n\
+    jmp beginPushParameter1Loop\n\
+  endPushParameter1Loop:\n\
+    # n-1 values were pushed onto the stack\n\
+    # we need to push the rest of the values\n\
+    # push t\n\
+    pushl 16(%ebp)\n\
+    # push n-1\n\
+    pushl 20(%ebp)\n\
+    # call the size function\n\
+    call sizeOfVecs\n\
+    # we need to clean up the stack\n\
+    # we pushed 8+4(n-1) bytes of junk\n\
+    # so we need to pop that much off\n\
+    movl 20(%ebp), %eax\n\
+    sall %eax\n\
+    sall %eax\n\
+    addl $8, %eax\n\
+    addl %eax, %esp\n\
+    # now the return value for the size is sitting on top of the stack\n\
+    # move the calculated size into the local variable space\n\
+    popl %eax\n\
+    movl %eax, -4(%ebp)\n\
+    # as of now, the stack is clean\n\
+    # the first thing to do is set\n\
+    # vp = ap + totalSize\n\
+    # we just calculated totalSize\n\
+    movl -4(%ebp), %eax\n\
+    # so we can add ap to it\n\
+    addl 12(%ebp), %eax\n\
+    # and assign that to vp\n\
+    movl %eax, 8(%ebp)\n\
+    # now we need to emulate the for loop\n\
+    # the counter will be stored in ecx\n\
+    movl $0, %ecx\n\
+  beginForLoop1:\n\
+    movl 20(%ebp), %eax\n\
+    incl %eax\n\
+    cmpl %ecx, %eax\n\
+    je endForLoop1\n\
+    # -- body of for loop --\n\
+    # now we need to make the recursive call to setupVector\n\
+    # it has no return value, so don't allocate space for it\n\
+    # start by pushing all the vector sizes\n\
+    # starting with the innermost one\n\
+    movl 20(%ebp), %ebx\n\
+  beginPushParameter2Loop:\n\
+    cmpl $0, %ebx\n\
+    je endPushParameter2Loop\n\
+    movl %ebx, %eax\n\
+    sall %eax\n\
+    sall %eax\n\
+    # eax = 4i\n\
+    addl $24, %eax\n\
+    # eax = 24+4i\n\
+    addl %ebp, %eax\n\
+    # eax = 24+4i(%ebp)\n\
+    # push the parameter value\n\
+    pushl (%eax)\n\
+    decl %ebx\n\
+    jmp beginPushParameter2Loop\n\
+  endPushParameter2Loop:\n\
+    # now we have pushed all the a1 .. an-1 onto the stack\n\
+    # we just need to push the dimension\n\
+    pushl 20(%ebp)\n\
+    # and t\n\
+    pushl 16(%ebp)\n\
+    # and the ap\n\
+    pushl 12(%ebp)\n\
+    # and the vp\n\
+    pushl 8(%ebp)\n\
+    # now make the call\n\
+    calll setupVector\n\
+    # now clean up the stack\n\
+    # we've pushed 16+4(n-1) bytes onto the stack\n\
+    movl 20(%ebp), %eax\n\
+    # eax = n-1\n\
+    sall %eax\n\
+    sall %eax\n\
+    # eax = 4(n-1)\n\
+    addl $16, %eax\n\
+    # eax = 16+4(n-1)\n\
+    # clean the space up\n\
+    addl %eax, %esp\n\
+    # ap += 8\n\
+    movl 12(%ebp), %eax\n\
+    addl $8, %eax\n\
+    movl %eax, 12(%ebp)\n\
+    # vp += totalSize\n\
+    movl 8(%ebp), %eax\n\
+    addl -4(%ebp), %eax\n\
+    movl %eax, 8(%ebp)\n\
+    # -- end body of for loop --\n\
+    incl %ecx\n\
+    jmp beginForLoop1\n\
+  endForLoop1:\n\
+  endOfSetupVector:\n\
+    popal\n\
+    leave\n\
+    ret\n\
+";

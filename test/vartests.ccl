@@ -1,0 +1,33 @@
+fun ()
+  vars
+    int i,
+    triv v,
+    ref int ri,
+    ref vec int rvi,
+    fun () int fi,
+    con int ci,
+    vec [17] int veci
+  in
+    i;
+    v;
+    ri;
+    rvi;
+    fi;
+    ci;
+    i:=i;
+    v:=v;
+    ri:=ri;
+    rvi:=rvi;
+    fi:=fi;
+    ci:=ci;
+    rvi := veci;
+    rvi[i];
+    rvi[i]:=i;
+    ri := &i;
+    ri@;
+    ri@:=i;
+    input i;
+    input ri@;
+    input rvi[i]
+    endvars
+  endfun

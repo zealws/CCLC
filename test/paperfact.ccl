@@ -1,0 +1,36 @@
+fun ()
+
+    vars
+
+        fun (int) int fact,
+        int j
+
+    in
+
+        !
+        ! Let fact = the naive recursive factorial function.
+        !
+
+            fact :=
+
+                fun (int n)
+                    if n = 0 then
+                        1
+                    else
+                        n * fact(n - 1)
+                        endif
+                    endfun;
+
+        !
+        ! For j = 0, ... , 10, calculate and display j!.
+        !
+
+            j := 0;
+            while j <= 10 do
+                output fact(j);
+                j := j + 1
+                endwhile
+
+        endvars
+
+    endfun

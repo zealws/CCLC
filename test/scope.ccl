@@ -1,0 +1,46 @@
+fun ()
+  vars
+    int a
+  in
+    a;
+    b;
+    c;
+    vars
+      int a,
+      int b
+    in
+      a;
+      b;
+      c;
+      vars
+        int a,
+        int b,
+        int c
+      in
+        a;
+        b;
+        c;
+        vars
+          int a,
+          int b,
+          int c,
+          int b
+        in
+          a;
+          b;
+          c
+          endvars;
+        a;
+        b;
+        c
+        endvars;
+      a;
+      b;
+      c
+      endvars;
+    a;
+    b;
+    c
+    endvars;
+  fun (int a, int b, int c, int b) 17 endfun
+  endfun

@@ -1,0 +1,6 @@
+fun ()
+  fun (int j)
+    input j;
+    output j
+    endfun (17)
+  endfun

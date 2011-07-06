@@ -1,0 +1,29 @@
+fun ()
+  vars
+    int row,
+    int col,
+    int noerror,
+    vec [15] vec [20] int vvi
+  in
+    row := 0;
+    while row < # vvi do
+      col := 0;
+      while col < # vvi[0] do
+        vvi[row][col] := row * col + 1;
+        col := col + 1
+        endwhile;
+      row := row + 1
+      endwhile;
+    noerror := 1;
+    col := 0;
+    while col < # vvi[0] do
+      row := 0;
+      while row < # vvi do
+        noerror := noerror * (vvi[row][col] = row * col + 1);
+        row := row + 1
+        endwhile;
+      col  := col + 1
+      endwhile;
+    output noerror
+    endvars
+  endfun

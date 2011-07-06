@@ -1,0 +1,12 @@
+fun ()
+    vars
+	int j,
+	con triv c,
+	vec [0] int r
+    in
+        !
+        ! test for illegal input value
+        !
+	input j
+	endvars
+    endfun

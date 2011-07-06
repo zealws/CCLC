@@ -1,0 +1,53 @@
+fun ()
+    vars
+        int i,
+        con int ci,
+        fun () int fi,
+        fun () con int fci,
+        fun () fun () int ffi,
+        fun () ref con int frci,
+        fun () ref fun () int frfi
+    in
+        fi := fun () i endfun;
+        fci := fun () ci endfun;
+        ffi := fun () fi endfun;
+        frci := fun () & ci endfun;
+        frfi := fun () & fi endfun;
+        output -1;
+        i := 1111;
+        output fi();
+        output -2;
+        i := 2222;
+        output ffi()();
+        output -3;
+        i := 3333;
+        output frfi()@();
+        output -4;
+        frfi()@ := fun () 4444 endfun;
+        output fi();
+        output -5;
+        output
+            control
+                ci
+            in
+                fci() continues 5555;
+                output 0
+                endcontrol;
+        output -6;
+        output
+            control
+                ci
+            in
+                frci()@ continues 6666;
+                output 0
+                endcontrol;
+        output -7;
+        output
+            control
+                frci()@
+            in
+                ci continues 7777;
+                output 0
+                endcontrol
+        endvars
+    endfun

@@ -1,0 +1,58 @@
+fun ()
+
+    vars
+
+        fun (int, fun (int) int) int fact,
+        int j
+
+    in
+
+        !
+        ! Let fact = the continuation-passing style factorial function.
+        !
+
+            fact :=
+
+                fun (int n, fun (int) int k)
+
+                    if n = 0 then
+
+                        !
+                        ! Apply the continuation to the result.
+                        !
+
+                            k(1)
+
+                    else
+
+                        !
+                        ! Call fact with a continuation that will (eventually)
+                        ! multiply (n-1)! by n.
+                        !
+
+                            fact(n - 1, fun (int result) k(n * result) endfun)
+
+                        endif
+
+                    endfun;
+
+        !
+        ! For j = 0, ... , 10, calculate and display j!.
+        !
+
+            j := 0;
+            while j <= 10 do
+
+                !
+                ! Calculate and display j! by calling fact with j and the
+                ! identity function as actual parameters.
+                !
+
+                    output fact(j, fun (int n) n endfun);
+
+                j := j + 1
+                endwhile
+
+        endvars
+
+    endfun

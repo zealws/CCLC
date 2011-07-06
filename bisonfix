@@ -1,0 +1,49 @@
+#!/bin/tcsh -f
+
+
+set SED=/bin/sed
+#set SED=/usr/bin/sed
+
+set RM=/bin/rm
+
+set MV=/bin/mv
+
+
+if ( $#argv == 0 ) then
+
+    echo "usage:  bisonfix file1 [file2 ...]"
+    exit 1
+
+else
+
+    foreach f ( $argv )
+
+        if ( -e $f ) then
+
+#
+# For newer GNU sed's, BSD, Posix sed use the following sed command:
+#
+#            $SED -E -e 's/[[:<:]]union[[:>:]]/struct/' -e 's/# *define *YYINITDEPTH *.*/# define YYINITDEPTH 2000/' < $f > .$$.bisonfix.tmp
+
+#
+# For older GNU sed's use the following sed command:
+#
+            $SED -e 's/\<union\>/struct/' -e 's/# *define *YYINITDEPTH *.*/# define YYINITDEPTH 2000/' < $f > .$$.bisonfix.tmp
+
+#
+# For older sed's that require the -E switch to permit use of things beyond the most basic patterns use the following sed command:
+#
+#            $SED -E -e 's/\<union\>/struct/' -e 's/# *define *YYINITDEPTH *.*/# define YYINITDEPTH 2000/' < $f > .$$.bisonfix.tmp
+
+            $RM -f $f
+            $MV .$$.bisonfix.tmp $f
+
+        else
+
+            echo "No such file as $f"
+
+            endif
+
+        end
+
+    endif

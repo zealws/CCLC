@@ -1,0 +1,55 @@
+fun ()
+  vars
+    int n,
+    vec [input n] int v,
+    int sum,
+    fun (ref vec int, ref int) triv sumVector,
+    fun (ref vec int) triv readVector,
+    fun (ref vec int) triv writeVector
+  in
+    sumVector :=
+      fun (ref vec int v, ref int result)
+        vars
+          int j
+        in
+          j := 0;
+          result@ := 0;
+          while j < # v do
+            result@ := result@ + v[j];
+            j := j + 1
+            endwhile
+          endvars;
+        ?
+        endfun;
+    readVector :=
+      fun (ref vec int v)
+        vars
+          int j
+        in
+          j := 0;
+          while j < # v do
+            input v[j];
+            j := j + 1
+            endwhile
+          endvars;
+        ?
+        endfun;
+    writeVector :=
+      fun (ref vec int v)
+        vars
+          int j
+        in
+          j := 0;
+          while j < # v do
+            output v[j];
+            j := j + 1
+            endwhile
+          endvars;
+        ?
+        endfun;
+    readVector(v);
+    writeVector(v);
+    sumVector(v, &sum);
+    output sum
+    endvars
+  endfun

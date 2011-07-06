@@ -1,0 +1,19 @@
+fun ()
+    vars
+        int i
+    in
+        i := 1;
+        vars
+            vec [ output 1 ] vec [ output 2 ] int v
+        in
+            output 99999;
+            if (output #v) > 0 then
+                output #(v[0]);
+                ?
+            else
+                ?
+                endif
+
+            endvars
+        endvars
+    endfun

@@ -1,0 +1,31 @@
+fun ()
+  vars
+    vec [1000] con triv cons,
+    fun (int, int) triv value,
+    fun (int, int) int max
+  in
+    max := fun (int a, int b) if a >= b then a else b endif endfun;
+    value :=
+      fun (int level, int offset)
+        while (offset >= 0) + (level = 0) do
+          if offset = 0 then
+            ?
+          else
+            if level < # cons - 1 then
+              control
+                cons[level]
+              in
+                value(level + 1, offset - 1)
+                endcontrol
+            else
+              ?
+              endif
+            endif;
+          output level;
+          input offset
+          endwhile;
+        cons[max(0, level + offset)] continues ?
+        endfun;
+    value(0, 0)
+    endvars
+  endfun

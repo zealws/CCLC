@@ -1,0 +1,17 @@
+fun ()
+  fun (fun (int) int fact, int j)
+    fact :=
+      fun (int n)
+        if n = 0 then
+          1
+        else
+          n * fact(n - 1)
+          endif
+        endfun;
+    j := 0;
+    while j <= 10 do
+      output fact(j);
+      j := j + 1
+      endwhile
+    endfun (fun (int j) 17 endfun, 17)
+  endfun

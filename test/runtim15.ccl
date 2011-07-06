@@ -1,0 +1,6 @@
+fun ()
+    !
+    ! test for dangling reference as operand of control
+    !
+    control vars con int j in &j endvars@ in 17 endcontrol
+    endfun

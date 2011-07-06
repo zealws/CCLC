@@ -1,0 +1,135 @@
+fun ()
+
+    vars
+
+        int size
+        
+    in
+    
+        input size;
+        
+        vars
+
+            fun (int, con triv, con triv) triv placeQueen,
+            con triv fail,
+            con triv succeed,
+
+            vec [ size ] int colTaken,
+            vec [ 2 * size - 1 ] int leftDiagTaken,
+            vec [ 2 * size - 1 ] int rightDiagTaken,
+            int j
+            
+        in
+        
+            placeQueen :=
+            
+                fun (int numberPlaced, con triv fail, con triv succeed)
+                
+                    vars
+                    
+                        int col,
+                        int left,
+                        int right
+                        
+                    in
+                    
+                        if numberPlaced >= size then
+                        
+                            succeed continues ?
+                            
+                        else
+
+                            col := 0;
+                            left := numberPlaced - col + size - 1;
+                            right := numberPlaced + col;
+                            
+                            while col < size  do
+
+                                if (colTaken[ col ] = 0)
+                                        * (leftDiagTaken[ left ] = 0)
+                                        * (rightDiagTaken[ right ] = 0)
+                                        then
+                                        
+                                    colTaken[ col ] := 1;
+                                    leftDiagTaken[ left ] := 1;
+                                    rightDiagTaken[ right ] := 1;
+                                    
+                                    vars
+                                        con triv fail
+                                    in
+                                        control
+                                            fail
+                                        in
+                                        
+                                            vars
+                                                con triv succeed
+                                            in
+                                                control
+                                                    succeed
+                                                in
+                                                    placeQueen(numberPlaced + 1, fail, succeed)
+                                                    endcontrol
+                                                endvars;
+
+                                            output (numberPlaced + 1);
+                                            output (col + 1);
+                                            
+                                            succeed continues ?
+                                            
+                                            endcontrol
+                                        endvars;
+                                            
+                                    colTaken[ col ] := 0;
+                                    leftDiagTaken[ left ] := 0;
+                                    rightDiagTaken[ right ] := 0;
+                                    
+                                    ?
+
+                                else
+
+                                    ?
+
+                                    endif;
+
+                                col := col + 1;
+                                left := left - 1;
+                                right := right + 1
+                                
+                                endwhile;
+                                
+                            fail continues ?
+                                    
+                            endif
+                    
+                        endvars
+
+                    endfun;
+                    
+                j := 0;
+                while j < # colTaken do
+                    colTaken[ j ] := 0;
+                    j := j + 1
+                    endwhile;
+
+                j := 0;
+                while j < # leftDiagTaken do
+                    leftDiagTaken[ j ] := 0;
+                    rightDiagTaken[ j ] := 0;
+                    j := j + 1
+                    endwhile;
+                
+                control
+                    fail
+                in
+                    control
+                        succeed
+                    in
+                        placeQueen(0, fail, succeed)
+                        endcontrol
+                    endcontrol
+                
+            endvars
+            
+        endvars
+
+    endfun

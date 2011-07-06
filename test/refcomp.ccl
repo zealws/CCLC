@@ -1,0 +1,28 @@
+fun ()
+  vars
+    int i1,
+    int i2,
+    ref int r1,
+    ref int r2,
+    ref int r3
+  in
+    r1 := & i1;
+    r2 := & i1;
+    r3 := & i2;
+    output (r1 = r2);
+    output (r1 <> r2);
+    output (r1 = r3);
+    output (r1 <> r3);
+    vars
+      int i1,
+      ref int r2
+    in
+      r2 := r1;
+      r3 := & i1;
+      output (r1 = r2);
+      output (r1 <> r2);
+      output (r1 = r3);
+      output (r1 <> r3)
+      endvars
+    endvars
+  endfun

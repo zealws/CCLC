@@ -1,0 +1,9 @@
+# include all our compiler options
+include Makefile.inc
+
+# Build the executable file
+cclc: $(OBJS)
+	$(LD) $(LDFLAGS) -o cclc $(OBJS)
+
+# Include all the automatically created dependencies
+include Makefile.dep

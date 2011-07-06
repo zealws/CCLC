@@ -1,0 +1,24 @@
+fun ()
+    output
+        fun (int j)
+            j
+            endfun (
+                fun (int j)
+                    j
+                    endfun (
+                        fun (int j)
+                            j
+                            endfun (
+                                fun (int j)
+                                    j
+                                    endfun (
+                                        fun (int j)
+                                            j
+                                            endfun (
+                                                1234
+                                                )
+                                        )
+                                )
+                        )
+                )
+    endfun

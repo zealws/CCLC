@@ -1,0 +1,12 @@
+fun ()
+  fun (int a, int b, int c, int d)
+    input a;
+    input b;
+    output (a + b);
+    output (a - b);
+    output (a * b);
+    output (a / b);
+    output (-a);
+    output (+b)
+    endfun (17, 18, 19, 20)
+  endfun

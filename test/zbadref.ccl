@@ -1,0 +1,7 @@
+fun ()
+  vars
+    ref int RI
+  in
+    RI@
+    endvars
+  endfun

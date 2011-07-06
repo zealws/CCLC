@@ -1,0 +1,45 @@
+fun ()
+  vars
+    int i1,
+    int i2,
+    int i3,
+    con int c1,
+    con int c2,
+    con int c3
+  in
+    i1 := 1;
+    i2 := 1;
+    i3 := 0;
+    output (i1 = i2);
+    output (i1 <> i2);
+    output (i1 = i3);
+    output (i1 <> i3);
+    control
+      c1
+    in
+      c2 := c1;
+      output (c1 = c2);
+      output (c1 <> c2);
+      control
+        c3
+      in
+        output (c1 = c3);
+        output (c1 <> c3)
+        endcontrol
+      endcontrol;
+    control
+      c1
+    in
+      c2 := c1;
+      output (c1 = c2);
+      output (c1 <> c2);
+      control
+        c3
+      in
+        output (c1 = c3);
+        output (c1 <> c3)
+        endcontrol;
+      17
+      endcontrol
+    endvars
+  endfun

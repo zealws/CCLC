@@ -1,0 +1,5 @@
+fun ()
+    fun ()
+        output 17
+        endfun ()
+    endfun

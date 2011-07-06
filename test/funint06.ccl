@@ -1,0 +1,5 @@
+fun ()
+    fun (int j)
+        j
+        endfun (13579)
+    endfun

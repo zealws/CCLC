@@ -1,0 +1,52 @@
+fun (int a)
+  vars
+    int Int,
+    ref vec int refVecInt,
+    vec [17] int vecInt,
+    ref int refInt,
+    fun (int, int) int funIntIntReturnInt,
+    fun (int) int funIntReturnInt,
+    con int conInt,
+    int Int,
+    vec [?] int badVecInt
+  in
+    vecInt := refVecInt;
+    &vecInt;
+    input vecInt;
+    Int@;
+    Int();
+    refInt < refInt;
+    refVecInt < refVecInt;
+    conInt < conInt;
+    funIntReturnInt = funIntReturnInt;
+    Int = refInt;
+    control conInt in ? endcontrol;
+    funIntReturnInt();
+    funIntIntReturnInt(17, ?);
+    if 1 then 1 else ? endif;
+    Int := conInt;
+    (Int + ?); (Int - ?); (Int * ?); (Int / ?);
+    input refInt;
+    output conInt;
+    if ? then 1 else 2 endif;
+    refVecInt[?];
+    while ? do 1 endwhile;
+    -(?); +(?);
+    Int[1];
+    # ?;
+    control funIntIntReturnInt in 17 endcontrol;
+    Int continues 17;
+    Int := Int continues 17;
+    conInt := Int continues 17;
+    funIntReturnInt := fun (int j) j continues 17 endfun;
+    conInt continues ?;
+    foo;
+    refInt = refInt;
+    refVecInt = refVecInt;
+    conInt = conInt;
+    refVecInt = vecInt;
+    if 1 then refVecInt else vecInt endif;
+    conInt continues 17;
+    input refInt@
+    endvars
+  endfun

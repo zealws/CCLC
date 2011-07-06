@@ -1,0 +1,26 @@
+fun ()
+  vars
+    vec [2] vec [3] int a,
+    vec [4] ref vec int b,
+    ref vec ref vec int c,
+    fun (ref vec ref vec int) triv d,
+    fun () ref vec ref vec int e
+  in
+    a := a;
+    a[0] := a[1];
+    a[0][0] := a[1][1];
+    b := a;
+    b[0] := a[1];
+    b[0][0] := a[1][1];
+    c := a;
+    c[0] := a[1];
+    c[0][0] := a[1][1];
+    d := fun (ref vec ref vec int a) a[0] := a[1]; ? endfun;
+    d(a);
+    d(b);
+    d(c);
+    e := fun () a endfun;
+    e := fun () b endfun;
+    e := fun () c endfun
+    endvars
+  endfun

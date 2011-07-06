@@ -1,0 +1,6 @@
+fun ()
+    !
+    ! test for dangling reference as lh operand of []
+    !
+    vars vec [17] int j in j endvars[0] := 17
+    endfun

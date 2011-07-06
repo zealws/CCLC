@@ -1,0 +1,10 @@
+fun ()
+    vars
+	int j
+    in
+        !
+        ! test for undefined output value
+        !
+	output j
+	endvars
+    endfun

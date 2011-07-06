@@ -1,0 +1,12 @@
+fun ()
+    vars
+	int j,
+	con triv c,
+	vec [0] int r
+    in
+        !
+        ! test for negative length in vector declaration
+        !
+	vars vec [-1] int r in ? endvars
+	endvars
+    endfun

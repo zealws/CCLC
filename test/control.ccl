@@ -1,0 +1,13 @@
+fun ()
+  vars
+    con int ci,
+    int j
+  in
+    output
+      control
+        ci
+      in
+        ci continues 17
+        endcontrol
+    endvars
+  endfun

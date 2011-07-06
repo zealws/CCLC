@@ -1,0 +1,63 @@
+fun ()
+
+  vars
+
+    int plane,
+    int row,
+    int col,
+    int count,
+    int errors,
+    int elements,
+    immut vec [ input plane ] immut vec [ input row ] immut vec [ input col ] int vvvi
+
+  in
+  
+    elements := 0;
+
+    count := 0;
+    
+    plane := 0;
+    while plane < # vvvi do
+      row := 0;
+      while row < # vvvi[ plane ] do
+        col := 0;
+        while col < # vvvi[ plane ][ row ] do
+          vvvi[ plane ][ row ][ col ] := count;
+          count := count + 10;
+          elements := elements + 1;
+          col := col + 1
+          endwhile;
+        row := row + 1
+        endwhile;
+      plane := plane + 1
+      endwhile;
+      
+    errors := 0;
+    
+    count := 0;
+    
+    plane := 0;
+    while plane < # vvvi do
+      row := 0;
+      while row < # vvvi[ plane ] do
+        col := 0;
+        while col < # vvvi[ plane ][ row ] do
+          if vvvi[ plane ][ row ][ col ] = count then
+            0
+          else
+            errors := errors + 1
+            endif;
+          count := count + 10;
+          col := col + 1
+          endwhile;
+        row := row + 1
+        endwhile;
+      plane := plane + 1
+      endwhile;
+      
+    output elements;
+    output errors
+
+    endvars
+
+  endfun

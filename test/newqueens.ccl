@@ -1,0 +1,111 @@
+fun ()
+
+    vars
+
+        int size
+        
+    in
+    
+        input size;
+        
+        vars
+
+            fun (int) triv placeQueen,
+
+            vec [ size ] int colTaken,
+            vec [ 2 * size - 1 ] int leftDiagTaken,
+            vec [ 2 * size - 1 ] int rightDiagTaken,
+            int success,
+            int j
+            
+        in
+        
+            placeQueen :=
+            
+                fun (int numberPlaced)
+                
+                    vars
+                    
+                        int col,
+                        int left,
+                        int right
+                        
+                    in
+                    
+                        if numberPlaced >= size then
+                        
+                            success := 1
+                            
+                        else
+
+                            col := 0;
+                            left := numberPlaced - col + size - 1;
+                            right := numberPlaced + col;
+                            while (col < size) * (success = 0) do
+
+                                if (colTaken[ col ] = 0)
+                                        * (leftDiagTaken[ left ] = 0)
+                                        * (rightDiagTaken[ right ] = 0)
+                                        then
+                                        
+                                    colTaken[ col ] := 1;
+                                    leftDiagTaken[ left ] := 1;
+                                    rightDiagTaken[ right ] := 1;
+                                    placeQueen(numberPlaced + 1);
+
+                                    if success then
+
+                                        output (numberPlaced + 1);
+                                        output (col + 1)
+
+                                    else
+
+                                        colTaken[ col ] := 0;
+                                        leftDiagTaken[ left ] := 0;
+                                        rightDiagTaken[ right ] := 0
+
+                                        endif;
+
+                                    ?
+                                        
+                                else
+
+                                    ?
+
+                                    endif;
+
+                                col := col + 1;
+                                left := left - 1;
+                                right := right + 1
+                                endwhile
+                                    
+                            endif
+                    
+                        endvars;
+
+                        ?
+                    
+                    endfun;
+                    
+                success := 0;
+
+                j := 0;
+                while j < # colTaken do
+                    colTaken[ j ] := 0;
+                    j := j + 1
+                    endwhile;
+
+                j := 0;
+                while j < # leftDiagTaken do
+                    leftDiagTaken[ j ] := 0;
+                    rightDiagTaken[ j ] := 0;
+                    j := j + 1
+                    endwhile;
+                
+                placeQueen(0)
+                
+            endvars
+            
+        endvars
+
+    endfun

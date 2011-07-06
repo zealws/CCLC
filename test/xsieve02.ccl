@@ -1,0 +1,117 @@
+!
+! This version implements a vector as a single function, capable of both
+! fetching from and storing into element values.  The function is again
+! constructed by recursive calls to the makeSieveThenExec function, which,
+! after constructing the "vector", executes the code that uses the vector.
+!
+
+fun ()
+
+    vars
+
+        int n
+
+    in
+
+        input n;
+
+        if n > 0 then
+
+            n := n + 1;
+
+            vars
+
+                fun (immut int, fun (immut int, immut int, immut int) immut int) immut int makeSieveThenExec
+
+            in
+
+                makeSieveThenExec :=
+
+                    fun (immut int size, immut fun (immut int, immut int, immut int) immut int sieve)
+
+                        if size > 0 then
+
+                            vars
+
+                                int sieveElement
+
+                            in
+
+                                makeSieveThenExec(
+                                    size - 1,
+                                    fun (immut int operation, immut int index, immut int value)
+                                        if index + 1 = size then
+                                            if operation = 0 then
+                                                sieveElement
+                                            else
+                                                sieveElement := value
+                                                endif
+                                        else
+                                            sieve(operation, index, value)
+                                            endif
+                                        endfun
+                                    )
+
+                                endvars
+
+                        else
+
+                            vars
+
+                                int candidate,
+                                int candidateMultiple
+
+                            in
+
+                                candidate := 2;
+                                while candidate < n do
+                                    sieve(1, candidate, 1);
+                                    candidate := candidate + 1
+                                    endwhile;
+
+                                candidate := 2;
+                                while candidate < n do
+                                    if sieve(0, candidate, 0) then
+                                        candidateMultiple := 2 * candidate;
+                                        while candidateMultiple < n do
+                                            sieve(1, candidateMultiple, 0);
+                                            candidateMultiple := candidateMultiple + candidate
+                                            endwhile
+                                    else
+                                        0
+                                        endif;
+                                    candidate := candidate + 1
+                                    endwhile;
+
+                                candidate := 2;
+                                while candidate < n do
+                                    if sieve(0, candidate, 0) then
+                                        output candidate
+                                    else
+                                        0
+                                        endif;
+                                    candidate := candidate + 1
+                                    endwhile
+
+                                endvars
+
+                            endif
+
+                        endfun;
+
+                makeSieveThenExec(
+                    n,
+                    fun (immut int operation, immut int index, immut int value) 0 endfun
+                    )
+
+                endvars
+
+        else
+
+            0
+
+            endif
+
+        endvars
+
+    endfun

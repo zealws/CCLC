@@ -1,0 +1,123 @@
+!
+! This version implements a vector as a pair of functions:  one for fetching
+! element values and one for storing new values into elements.  The functions
+! themselves are constructed by recursive calls to the makeSieveThenExec
+! function, which, after constructing the "vector", executes the code that
+! uses the vector.
+!
+
+fun ()
+
+    vars
+
+        int n
+
+    in
+
+        input n;
+
+        if n > 0 then
+
+            n := n + 1;
+
+            vars
+
+                fun (immut int, immut fun (immut int) immut int, immut fun (immut int, immut int) immut int) immut int makeSieveThenExec
+
+            in
+
+                makeSieveThenExec :=
+
+                    fun (immut int size, immut fun (immut int) immut int sieveFetch, immut fun (immut int, immut int) immut int sieveStore)
+
+                        if size > 0 then
+
+                            vars
+
+                                int sieveElement
+
+                            in
+
+                                makeSieveThenExec(
+                                    size - 1,
+                                    fun (immut int index)
+                                        if index + 1 = size then
+                                            sieveElement
+                                        else
+                                            sieveFetch(index)
+                                            endif
+                                        endfun,
+                                    fun (immut int index, immut int value)
+                                        if index + 1 = size then
+                                            sieveElement := value
+                                        else
+                                            sieveStore(index, value)
+                                            endif
+                                        endfun
+                                    )
+
+                                endvars
+
+                        else
+
+                            vars
+
+                                int candidate,
+                                int candidateMultiple
+
+                            in
+
+                                candidate := 2;
+                                while candidate < n do
+                                    sieveStore(candidate, 1);
+                                    candidate := candidate + 1
+                                    endwhile;
+
+                                candidate := 2;
+                                while candidate < n do
+                                    if sieveFetch(candidate) then
+                                        candidateMultiple := 2 * candidate;
+                                        while candidateMultiple < n do
+                                            sieveStore(candidateMultiple, 0);
+                                            candidateMultiple := candidateMultiple + candidate
+                                            endwhile
+                                    else
+                                        0
+                                        endif;
+                                    candidate := candidate + 1
+                                    endwhile;
+
+                                candidate := 2;
+                                while candidate < n do
+                                    if sieveFetch(candidate) then
+                                        output candidate
+                                    else
+                                        0
+                                        endif;
+                                    candidate := candidate + 1
+                                    endwhile
+
+                                endvars
+
+                            endif
+
+                        endfun;
+
+                makeSieveThenExec(
+                    n,
+                    fun (immut int index) 0 endfun,
+                    fun (immut int index, immut int value) 0 endfun
+                    )
+
+                endvars
+
+        else
+
+            0
+
+            endif
+
+        endvars
+
+    endfun
+

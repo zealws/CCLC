@@ -1,0 +1,17 @@
+fun ()
+  vars
+    int j,
+    int n,
+    vec [input n] int a
+  in
+    j := 0;
+    while j < # a do
+      input a[j];
+      j := j + 1
+      endwhile;
+    while j > 0 do
+      output a[j - 1];
+      j := j - 1
+      endwhile
+    endvars
+  endfun

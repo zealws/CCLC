@@ -1,0 +1,601 @@
+
+
+alltokens.ccl
+
+**** on line 5: malformed program
+
+
+argtest.ccl
+
+
+
+bad.ccl
+
+**** on line 2: expected 'expression sequence' before 'endfun'
+
+
+casetest.ccl
+
+
+
+concomp.ccl
+
+
+
+contadd.ccl
+
+
+
+continue.ccl
+
+
+
+control.ccl
+
+
+
+disp.ccl
+
+
+
+fact.ccl
+
+
+
+factcont.ccl
+
+
+
+factcp.ccl
+
+
+
+funint01.ccl
+
+
+
+funint02.ccl
+
+
+
+funint03.ccl
+
+
+
+funint04.ccl
+
+
+
+funint05.ccl
+
+
+
+funint06.ccl
+
+
+
+funint07.ccl
+
+
+
+funint08.ccl
+
+
+
+funint09.ccl
+
+
+
+funint10.ccl
+
+
+
+funint11.ccl
+
+
+
+funint12.ccl
+
+
+
+idtest.ccl
+
+#### on line 12: invalid operands to assignment expression
+
+
+lexlev.ccl
+
+
+
+literals.ccl
+
+**** on line 6: integer literal overflow
+**** on line 11: integer literal overflow
+**** on line 12: integer literal overflow
+**** on line 13: integer literal overflow
+**** on line 17: integer literal overflow
+
+
+math.ccl
+
+
+
+mathsyntax.ccl
+
+**** on line 6: expected ',' before 'int'
+**** on line 11: expected ';' before 'b'
+**** on line 14: expected 'simple expression' before ';'
+**** on line 17: expected ';' before ''
+
+
+mincont.ccl
+
+
+
+minio.ccl
+
+
+
+minprog.ccl
+
+
+
+newdeep.ccl
+
+
+
+newimmuttest.ccl
+
+#### on line 15: invalid operand types for if expression
+
+
+newlevels255.ccl
+
+
+
+newlevels256.ccl
+
+
+
+newlevels257.ccl
+
+
+
+newqueens.ccl
+
+
+
+newqueensbad.ccl
+
+
+
+newqueenscont.ccl
+
+
+
+newqueenscp.ccl
+
+
+
+newreftest.ccl
+
+
+
+newreturntypes.ccl
+
+
+
+newtypes.ccl
+
+#### on line 9: cannot assign to immutable value
+#### on line 11: cannot assign to immutable value
+#### on line 19: cannot assign to immutable value
+#### on line 21: cannot assign to immutable value
+#### on line 30: invalid operands to assignment expression
+#### on line 32: invalid operands to assignment expression
+#### on line 37: cannot assign to immutable value
+#### on line 38: cannot assign to immutable value
+#### on line 39: cannot assign to immutable value
+#### on line 40: cannot assign to immutable value
+#### on line 41: cannot assign to immutable value
+#### on line 42: cannot assign to immutable value
+#### on line 43: cannot assign to immutable value
+#### on line 45: cannot assign to immutable value
+#### on line 54: invalid operands to assignment expression
+#### on line 56: invalid operands to assignment expression
+#### on line 61: cannot assign to immutable value
+#### on line 62: cannot assign to immutable value
+#### on line 63: cannot assign to immutable value
+#### on line 64: cannot assign to immutable value
+#### on line 65: cannot assign to immutable value
+#### on line 66: cannot assign to immutable value
+#### on line 67: cannot assign to immutable value
+#### on line 69: cannot assign to immutable value
+#### on line 85: cannot assign to immutable value
+#### on line 86: cannot assign to immutable value
+#### on line 87: cannot assign to immutable value
+#### on line 88: cannot assign to immutable value
+#### on line 89: cannot assign to immutable value
+#### on line 90: cannot assign to immutable value
+#### on line 91: cannot assign to immutable value
+#### on line 93: cannot assign to immutable value
+#### on line 102: invalid operands to assignment expression
+#### on line 104: invalid operands to assignment expression
+#### on line 110: invalid operands to assignment expression
+#### on line 112: invalid operands to assignment expression
+#### on line 138: invalid operands to assignment expression
+#### on line 140: invalid operands to assignment expression
+#### on line 142: invalid operands to assignment expression
+#### on line 144: invalid operands to assignment expression
+#### on line 146: invalid operands to assignment expression
+#### on line 148: invalid operands to assignment expression
+#### on line 150: invalid operands to assignment expression
+#### on line 152: invalid operands to assignment expression
+#### on line 170: invalid operands to assignment expression
+#### on line 172: invalid operands to assignment expression
+#### on line 174: invalid operands to assignment expression
+#### on line 176: invalid operands to assignment expression
+#### on line 178: invalid operands to assignment expression
+#### on line 180: invalid operands to assignment expression
+#### on line 182: invalid operands to assignment expression
+#### on line 184: invalid operands to assignment expression
+#### on line 201: invalid operands to assignment expression
+#### on line 202: invalid operands to assignment expression
+#### on line 203: invalid operands to assignment expression
+#### on line 204: invalid operands to assignment expression
+#### on line 206: invalid operands to assignment expression
+#### on line 208: invalid operands to assignment expression
+#### on line 209: invalid operands to assignment expression
+#### on line 210: invalid operands to assignment expression
+#### on line 211: invalid operands to assignment expression
+#### on line 212: invalid operands to assignment expression
+#### on line 214: invalid operands to assignment expression
+#### on line 216: invalid operands to assignment expression
+#### on line 217: invalid operands to assignment expression
+#### on line 218: invalid operands to assignment expression
+#### on line 219: invalid operands to assignment expression
+#### on line 220: invalid operands to assignment expression
+#### on line 225: invalid operands to assignment expression
+#### on line 226: invalid operands to assignment expression
+#### on line 227: invalid operands to assignment expression
+#### on line 228: invalid operands to assignment expression
+#### on line 233: invalid operands to assignment expression
+#### on line 234: invalid operands to assignment expression
+#### on line 235: invalid operands to assignment expression
+#### on line 236: invalid operands to assignment expression
+#### on line 238: invalid operands to assignment expression
+#### on line 240: invalid operands to assignment expression
+#### on line 241: invalid operands to assignment expression
+#### on line 242: invalid operands to assignment expression
+#### on line 243: invalid operands to assignment expression
+#### on line 244: invalid operands to assignment expression
+#### on line 246: invalid operands to assignment expression
+#### on line 248: invalid operands to assignment expression
+#### on line 249: invalid operands to assignment expression
+#### on line 250: invalid operands to assignment expression
+#### on line 251: invalid operands to assignment expression
+#### on line 252: invalid operands to assignment expression
+#### on line 257: invalid operands to assignment expression
+#### on line 258: invalid operands to assignment expression
+#### on line 259: invalid operands to assignment expression
+#### on line 260: invalid operands to assignment expression
+#### on line 266: invalid operands to assignment expression
+#### on line 268: invalid operands to assignment expression
+#### on line 270: invalid operands to assignment expression
+#### on line 272: invalid operands to assignment expression
+#### on line 274: invalid operands to assignment expression
+#### on line 276: invalid operands to assignment expression
+#### on line 278: invalid operands to assignment expression
+#### on line 280: invalid operands to assignment expression
+#### on line 298: invalid operands to assignment expression
+#### on line 300: invalid operands to assignment expression
+#### on line 302: invalid operands to assignment expression
+#### on line 304: invalid operands to assignment expression
+#### on line 306: invalid operands to assignment expression
+#### on line 308: invalid operands to assignment expression
+#### on line 310: invalid operands to assignment expression
+#### on line 312: invalid operands to assignment expression
+#### on line 329: invalid operands to assignment expression
+#### on line 330: invalid operands to assignment expression
+#### on line 331: invalid operands to assignment expression
+#### on line 332: invalid operands to assignment expression
+#### on line 334: invalid operands to assignment expression
+#### on line 336: invalid operands to assignment expression
+#### on line 337: invalid operands to assignment expression
+#### on line 338: invalid operands to assignment expression
+#### on line 339: invalid operands to assignment expression
+#### on line 340: invalid operands to assignment expression
+#### on line 342: invalid operands to assignment expression
+#### on line 344: invalid operands to assignment expression
+#### on line 345: invalid operands to assignment expression
+#### on line 346: invalid operands to assignment expression
+#### on line 347: invalid operands to assignment expression
+#### on line 348: invalid operands to assignment expression
+#### on line 353: invalid operands to assignment expression
+#### on line 354: invalid operands to assignment expression
+#### on line 355: invalid operands to assignment expression
+#### on line 356: invalid operands to assignment expression
+#### on line 361: invalid operands to assignment expression
+#### on line 362: invalid operands to assignment expression
+#### on line 363: invalid operands to assignment expression
+#### on line 364: invalid operands to assignment expression
+#### on line 366: invalid operands to assignment expression
+#### on line 368: invalid operands to assignment expression
+#### on line 369: invalid operands to assignment expression
+#### on line 370: invalid operands to assignment expression
+#### on line 371: invalid operands to assignment expression
+#### on line 372: invalid operands to assignment expression
+#### on line 374: invalid operands to assignment expression
+#### on line 376: invalid operands to assignment expression
+#### on line 377: invalid operands to assignment expression
+#### on line 378: invalid operands to assignment expression
+#### on line 379: invalid operands to assignment expression
+#### on line 380: invalid operands to assignment expression
+#### on line 385: invalid operands to assignment expression
+#### on line 386: invalid operands to assignment expression
+#### on line 387: invalid operands to assignment expression
+#### on line 388: invalid operands to assignment expression
+
+
+newvecvecvec.ccl
+
+
+
+nldisp.ccl
+
+
+
+nlfact.ccl
+
+
+
+nlfactcp.ccl
+
+
+
+nlidtest.ccl
+
+#### on line 12: invalid operands to assignment expression
+
+
+nllexlev.ccl
+
+
+
+nlmath.ccl
+
+
+
+nlnctype.ccl
+
+**** on line 10: redeclaration of identifier: Int from line 3
+#### on line 16: invalid operand to '@' operation
+#### on line 17: function application of non function
+#### on line 18: incompatible types to '<' expression
+#### on line 21: invalid argument to '=' expression
+#### on line 22: incompatible types to '=' expression
+0 1
+#### on line 24: malformed function call
+#### on line 25: invalid arguments to function call
+#### on line 26: invalid operand types for if expression
+#### on line 28: incompatible types to '+' expression
+#### on line 28: incompatible types to '-' expression
+#### on line 28: incompatible types to '*' expression
+#### on line 28: incompatible types to '/' expression
+#### on line 29: incompatible type to 'input' expression
+#### on line 31: invalid condition type for if expression
+#### on line 33: invalid condition type for while expression
+#### on line 34: incompatible type to unary '-' expression
+#### on line 34: incompatible type to unary '+' expression
+**** on line 40: undefined identifier: foo
+#### on line 50: top level function cannot have arguments
+
+
+nlscope.ccl
+
+**** on line 6: undefined identifier: b
+**** on line 7: undefined identifier: c
+**** on line 14: undefined identifier: c
+**** on line 27: redeclaration of identifier: b from line 25
+**** on line 39: undefined identifier: c
+**** on line 42: undefined identifier: b
+**** on line 43: undefined identifier: c
+**** on line 45: redeclaration of identifier: b from line 45
+
+
+paperfact.ccl
+
+
+
+paperfactcont.ccl
+
+
+
+paperfactcp.ccl
+
+
+
+paperreduce.ccl
+
+
+
+queens.ccl
+
+
+
+refcomp.ccl
+
+
+
+rovecs.ccl
+
+
+
+runtim01.ccl
+
+
+
+runtim02.ccl
+
+
+
+runtim03.ccl
+
+
+
+runtim04.ccl
+
+
+
+runtim05.ccl
+
+
+
+runtim06.ccl
+
+
+
+runtim07.ccl
+
+
+
+runtim08.ccl
+
+
+
+runtim09.ccl
+
+
+
+runtim10.ccl
+
+
+
+runtim11.ccl
+
+
+
+runtim12.ccl
+
+
+
+runtim13.ccl
+
+
+
+runtim14.ccl
+
+
+
+runtim15.ccl
+
+
+
+runtim16.ccl
+
+
+
+runtim17.ccl
+
+
+
+scope.ccl
+
+**** on line 6: undefined identifier: b
+**** on line 7: undefined identifier: c
+**** on line 14: undefined identifier: c
+**** on line 27: redeclaration of identifier: b from line 25
+**** on line 39: undefined identifier: c
+**** on line 42: undefined identifier: b
+**** on line 43: undefined identifier: c
+**** on line 45: redeclaration of identifier: b from line 45
+
+
+type.ccl
+
+**** on line 10: redeclaration of identifier: Int from line 3
+#### on line 11: invalid operand to vector allocation
+#### on line 15: incompatible type to 'input' expression
+#### on line 16: invalid operand to '@' operation
+#### on line 17: function application of non function
+#### on line 18: incompatible types to '<' expression
+#### on line 19: incompatible types to '<' expression
+#### on line 20: incompatible types to '<' expression
+#### on line 21: invalid argument to '=' expression
+#### on line 22: incompatible types to '=' expression
+#### on line 23: incompatible types of control expression
+0 1
+#### on line 24: malformed function call
+#### on line 25: invalid arguments to function call
+#### on line 26: invalid operand types for if expression
+#### on line 27: invalid operands to assignment expression
+#### on line 28: incompatible types to '+' expression
+#### on line 28: incompatible types to '-' expression
+#### on line 28: incompatible types to '*' expression
+#### on line 28: incompatible types to '/' expression
+#### on line 29: incompatible type to 'input' expression
+#### on line 30: incompatible type to 'output' expression
+#### on line 31: invalid condition type for if expression
+#### on line 32: invalid operand to '[]' operation
+#### on line 33: invalid condition type for while expression
+#### on line 34: incompatible type to unary '-' expression
+#### on line 34: incompatible type to unary '+' expression
+#### on line 35: invalid operand to '[]' operation
+#### on line 36: invalid type to '#' expression
+#### on line 37: invalid operand to control expression
+#### on line 38: invalid operand to continues expression
+#### on line 39: invalid operand to continues expression
+#### on line 40: invalid operands to assignment expression
+#### on line 40: invalid operand to continues expression
+#### on line 41: invalid operand to continues expression
+#### on line 42: invalid operand types to continues expression
+**** on line 43: undefined identifier: foo
+#### on line 53: top level function cannot have arguments
+
+
+vartests.ccl
+
+
+
+veccontbound.ccl
+
+
+
+vecfns.ccl
+
+
+
+vecoffns.ccl
+
+
+
+vectest.ccl
+
+
+
+vectypes.ccl
+
+
+
+veczerobounds.ccl
+
+
+
+xsieve01.ccl
+
+
+
+xsieve02.ccl
+
+
+
+zbadref.ccl
+
+
+
+zbadsub.ccl
+
+
+
+zvecvec.ccl
+
